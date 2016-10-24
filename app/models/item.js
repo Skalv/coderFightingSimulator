@@ -4,7 +4,7 @@ var Item = function(type, name, atk, def, desc, spd) {
   this.attack = atk;
   this.defense = def;
   this.description = desc;
-  this.Speed = spd;
+  this.speed = spd;
 }
 
 module.exports = Item;

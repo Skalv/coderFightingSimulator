@@ -8,14 +8,14 @@ const Player = function(pseudo, email, password) {
   this.characteres = [];
 }
 
-Player.prototype.chooseTeam = function() {
-  console.log("team :");
+Player.prototype.chooseTeam = function(team) {
+  this.team = team;
 }
 
 Player.prototype.createCharactere = function(nom, race, classe) {
   var newChar = new Charactere(nom, classe, race);
   this.characteres.push(newChar);
-
+  return newChar;
 }
 
 Player.prototype.getCharactere = function (name) {
