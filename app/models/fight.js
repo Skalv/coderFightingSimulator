@@ -17,11 +17,19 @@ Fight.prototype.round = function(attacker, defenser) {
   var attackerDegat = attacker.toAttack(); // on calcule ses dégats.
   // Le defenseur subit.
   defenser.toDefend(attackerDegat); // Le defenseur subit le nombre de dégats de l'attaquant.
-  console.log("FIGHT !!!");
+  // Test is defender is dead or not
+  if (defenser.isDead()) {
+    // Yes end of fight
+    this.roundEnd(attacker, defenser);
+  } else {
+    // No -> next round with defenser in attack and attacker in defense.
+    this.round(defenser, attacker);
+  }
+
 }
 
-Fight.prototype.roundEnd = function() {
-  console.log("And the winner is ");
+Fight.prototype.roundEnd = function(winner, looser) {
+  console.log("And the winner is " + winner.name);
 }
 
 Fight.prototype.prepareToFight = function() {
