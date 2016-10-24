@@ -15,11 +15,17 @@ const Charactere = function(name, classe, race) {
 }
 
 Charactere.prototype.toAttack = function() {
-  console.log(this.name + " attaque !");
+  var degats = Math.floor(Math.random() * (this.attack/2) + (this.attack/2));
+  console.log(this.name + " inglige : " + degats + " dégats.");
+  return degats;
 }
 
-Charactere.prototype.toDefend = function() {
-  console.log(this.name + " attaque !");
+Charactere.prototype.toDefend = function(degats) {
+  // On calcule le nombre de degats subit en fonction de sa defense
+  var degatReduc = Math.floor((degats-this.defense)/2);
+  console.log(this.name + " reduit ses degats de : " + degatReduc);
+  // Le personnage subit les degats moins la réduction
+  this.life -= degats - degatReduc;
 }
 
 Charactere.prototype.isMort = function() {
