@@ -1,4 +1,4 @@
-var Team = function() {
+var Team = function(name) {
   this.name = name;
   this.players = [];
 }
