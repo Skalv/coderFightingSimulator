@@ -2,6 +2,7 @@ const Player = require('./models/player');
 const Team   = require('./models/team');
 const Item   = require('./models/item');
 const Fight  = require('./models/fight');
+const Arena  = require('./models/arena');
 
 // Création des Joueurs
 var joueur1 = new Player('Florent', "fboutin76@gmail.com", "tutu");
@@ -9,6 +10,9 @@ var joueur2 = new Player('Albert', 'albert2000&gmail.com', "titi");
 
 // Création d'une team
 var team1 = new Team('webforce');
+
+// Création de l'arene
+var arena = new Arena('Kind');
 
 // Création d'équipements
 var item1 = new Item('bottes', 'Bottes en cuir d\'ascalon', 10, 30, 'Bottes en cuir de Charr', 50);
@@ -28,5 +32,5 @@ var persoAlbert = joueur2.createCharactere('Bebert', "chercheur", "Random");
 // persoAlbert.equip(item2);
 
 // Combat entre le joueur1 et le joueur2
-var fight1 = new Fight(monPerso, persoAlbert, "kind");
+var fight1 = new Fight(monPerso, persoAlbert, arena);
 fight1.prepareToFight();
