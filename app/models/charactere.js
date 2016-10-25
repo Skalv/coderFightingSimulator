@@ -26,7 +26,7 @@ Charactere.prototype.toDefend = function(degats) {
   var multiplier = Math.random() * 2 + 1;
   degats = Math.ceil(degats - (this.defense/multiplier));
   // Damage conno't be negatifs
-  degats = (degats >= 0)? degats : 0;
+  degats = (degats >= 0)? degats : 1;
   // Le personnage subit les degats moins la réduction
   this.life -= degats;
   console.log(this.name + " reçoit : " + degats + " degats, il lui reste : " + this.life);

@@ -25,11 +25,10 @@ Fight.prototype.round = function(attacker, defenser) {
     // No -> next round with defenser in attack and attacker in defense.
     this.round(defenser, attacker);
   }
-
 }
 
 Fight.prototype.roundEnd = function(winner, looser) {
-  console.log("And the winner is " + winner.name);
+  console.log("And the winner is " + winner.name + " in " + this.rounds + " rounds.");
 }
 
 Fight.prototype.prepareToFight = function() {
