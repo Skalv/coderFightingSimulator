@@ -6,6 +6,28 @@ const Arena  = require('./models/arena');
 
 // Création des variables globales.
 var joueur1;
+// Générateur d'items.
+var items = [];
+var nameP1 = ["de force", 'de robustesse', 'de rapidité'];
+var itemType = ["bottes", "pantalon", "torse", "gants", "casque", "main gauche", "main droite", "power"];
+var statsSet = [
+  [[20, 10, 30], [10, 20, 30], [10, 10, 60]], // bottes
+  [[30, 10, 10], [10, 30, 10], [20, 20, 20]], // pantalon
+  [[50, 30, 5], [30, 50, 5], [40, 40, 40]], // torse
+  [[15, 5, 5], [5, 15, 5], [10, 10, 15]], // gants
+  [[30, 20, 10], [20, 30, 10], [25, 25, 25]], // head
+  [[50, 10, 10], [10, 50, 50], [25, 25, 25]], // mh
+  [[40, 10, 10], [10, 40, 50], [25, 25, 25]], // oh
+  [[100, 0, 0], [0, 100, 0], [0, 0, 100]], // power
+]
+for (var i = 0; i < itemType.length; i++) {
+  for (var j = 0; j < nameP1.length; j++) {
+    var itemName = itemType[i] + " " + nameP1[j];
+    // type, name, atk, def, desc, spd
+    var item = new Item(itemType[i], itemName, statsSet[i][j][0], statsSet[i][j][1], itemName, statsSet[i][j][2]);
+    items.push(item);
+  }
+}
 
 $('.formPlayer').on('submit', function(e) {
   // Stop l'envois du formulaire vers le serveur.
@@ -66,6 +88,3 @@ $('.startFight').on('click', function(e) {
   var fight1 = new Fight(joueur1.characteres[0], joueur1.characteres[1], arena);
   fight1.prepareToFight();
 })
-
-// var fight1 = new Fight(monPerso, persoAlbert, arena);
-// fight1.prepareToFight();
