@@ -6,12 +6,66 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Codeur fighting simulator</title>
 
+  <link rel="stylesheet" href="app/css/style.css">
 
 </head>
 <body>
+  <ul>
+    <li>Logs de combat dans la page html</li>
+  </ul>
 
-  <h1>WAISHEU</h1>
 
+
+
+  <!-- Titre de la page -->
+  <h1 class="pageTitle">Création d'un Joueur</h1>
+  <!-- Notification -->
+  <h4 class="notification"></h4>
+  <!-- Formulaire de creation de joueur -->
+  <form action="#" class="formPlayer">
+    <label for="username">Votre pseudo</label>
+    <input type="text" name="username">
+
+    <label for="email">Votre Email</label>
+    <input type="mail" name="email">
+
+    <label for="password">Mot de passe</label>
+    <input type="password" name="password">
+
+    <input type="submit" value="Créer">
+  </form>
+  <!-- Formulaire de creation de personnage -->
+  <form action="#" class="formCharactere hide">
+    <label for="name">Nom du personnage</label>
+    <input type="text" name="name">
+
+    <label for="classe">Classe</label>
+    <select name="classe">
+      <option value="rogue">Voleur</option>
+      <option value="drood">Druide</option>
+      <option value="warrior">Guerrier</option>
+      <option value="Priest">Prêtre</option>
+      <option value="paladin">Paladin</option>
+      <option value="mage">Mage</option>
+      <option value="shaman">Chaman</option>
+    </select>
+
+    <label for="race">Race</label>
+    <select name="race">
+      <option value="barbar">Barbar</option>
+      <option value="orc">Orque</option>
+      <option value="nightElf">Elf de la nuit</option>
+      <option value="dwarf">Naim</option>
+      <option value="gnome">Gnome</option>
+      <option value="octopode">Octopode</option>
+      <option value="garou">Garou</option>
+    </select>
+
+    <input type="submit" value="Créer">
+  </form>
+  <!-- Bouton de combat -->
+  <button class="startFight hide">Lancer le combat</button>
+  <script src="./app/lib/jquery.min.js"></script>
   <script src="public/game.js"></script>
 </body>
 </html>
