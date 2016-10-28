@@ -46,7 +46,7 @@ var getItemByName = function(name) {
     }
   }
 }
-var populateSelectItem = function(type, el) {
+var populateSelectItem = function(type, el, currentItem) {
   // recherche les item par types
   var liste = getItemByType(type);
   // On vide le select pour éviter les doublons
@@ -55,7 +55,8 @@ var populateSelectItem = function(type, el) {
   $("select[name="+type+"]", el).append("<option></option>");
   // inject dans le selecteur chaque item
   for (var i = 0; i < liste.length; i++) {
-    $("select[name="+type+"]", el).append("<option>" + liste[i].name + "</option>");
+    var selected = (currentItem && currentItem.name === liste[i].name)? "selected" : "";
+    $("select[name="+type+"]", el).append("<option "+ selected +">" + liste[i].name + "</option>");
   }
 }
 
@@ -73,14 +74,14 @@ var initCharArray = function(el, perso) {
   $('.life', el).text(perso.life);
   $('.xp', el).text(perso.experience);
 
-  populateSelectItem('casque', el);
-  populateSelectItem('torse', el);
-  populateSelectItem('gants', el);
-  populateSelectItem('pantalon', el);
-  populateSelectItem('mainGauche', el);
-  populateSelectItem('mainDroite', el);
-  populateSelectItem('power', el);
-  populateSelectItem('bottes', el);
+  populateSelectItem('casque', el, perso.inventory.casque);
+  populateSelectItem('torse', el, perso.inventory.torse);
+  populateSelectItem('gants', el, perso.inventory.gants);
+  populateSelectItem('pantalon', el, perso.inventory.pantalon);
+  populateSelectItem('mainGauche', el, perso.inventory.mainGauche);
+  populateSelectItem('mainDroite', el, perso.inventory.mainDroite);
+  populateSelectItem('power', el, perso.inventory.power);
+  populateSelectItem('bottes', el, perso.inventory.bottes);
 
   el.removeClass('hide');
 }
@@ -164,10 +165,18 @@ $('.charStats select').on('change', function(e) {
   var char = joueur1.getCharactere(charName);
   // Récup le nom de l'item.
   var itemName = $(this).val();
-  // Récup de l'objet Items
-  var item = getItemByName(itemName);
-  // Le personnage équipe l'item sélectionné
-  char.equip(item);
+
+  // Si on ne sélectionne aucun item, alors on ne fait que déséquiper l'item actuel
+  if (itemName) {
+    // Récup de l'objet Items
+    var item = getItemByName(itemName);
+    // Le personnage équipe l'item sélectionné
+    char.equip(item);
+  } else {
+    // Récup du type de l'item
+    var type = $(this).attr('name');
+    char.drop(type);
+  }
   // On rénitialise le tableau de stats du perso
   initCharArray(statsTab, char);
 })

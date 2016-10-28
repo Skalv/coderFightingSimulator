@@ -52,7 +52,7 @@ Charactere.prototype.getLevel = function() {
 // main gauche, main droite, power
 Charactere.prototype.equip = function(item) {
   // Liste des items autorisés.
-  var authorizedItem = ["bottes", "pantalon", "torse", "gants", "casque", "main gauche", "main droite", "power"];
+  var authorizedItem = ["bottes", "pantalon", "torse", "gants", "casque", "mainGauche", "mainDroite", "power"];
   // Test si le type de l'item passé en argument est autorisé ou nom.
   if (authorizedItem.includes(item.type)) {
     // Si j'ai déjà un objet d'équipé je le retire.
@@ -72,19 +72,24 @@ Charactere.prototype.equip = function(item) {
   }
 }
 
-Charactere.prototype.drop = function(item) {
-  // Si notre item est équipé.
-  if (this.inventory[item.type] === item) {
-    // On retire de l'inventaire
-    this.inventory[item.type] = null;
-    // On retire les stats de l'objet
-    this.attack  -= item.attack;
-    this.defense -= item.defense;
-    this.speed   -= item.speed;
+Charactere.prototype.drop = function(itemOrType) {
+  var type = (itemOrType.constructor.name === "Item")
+  ? itemOrType.type
+  : itemOrType;
 
-    console.log("Vous retirez " + item.name);
+  // Si notre item est équipé.
+  if (this.inventory[type]) {
+    var currentItem = this.inventory[type];
+    // On retire de l'inventaire
+    this.inventory[type] = null;
+    // On retire les stats de l'objet
+    this.attack  -= currentItem.attack;
+    this.defense -= currentItem.defense;
+    this.speed   -= currentItem.speed;
+
+    console.log("Vous retirez votre " + currentItem.name);
   } else {
-    console.log("Vous n'avez pas équipé cet objet.");
+    console.log("Vous n'avez pas cet objet d'équipé.");
   }
 }
 
