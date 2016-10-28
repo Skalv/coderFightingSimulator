@@ -39,10 +39,20 @@ var getItemByType = function(type) {
   }
   return returnedItems;
 }
-
+var getItemByName = function(name) {
+  for (var i = 0; i < items.length; i++) {
+    if (items[i].name === name) {
+      return items[i];
+    }
+  }
+}
 var populateSelectItem = function(type, el) {
   // recherche les item par types
   var liste = getItemByType(type);
+  // On vide le select pour éviter les doublons
+  $("select[name="+type+"]", el).empty();
+  // Inject une option vide
+  $("select[name="+type+"]", el).append("<option></option>");
   // inject dans le selecteur chaque item
   for (var i = 0; i < liste.length; i++) {
     $("select[name="+type+"]", el).append("<option>" + liste[i].name + "</option>");
@@ -50,6 +60,8 @@ var populateSelectItem = function(type, el) {
 }
 
 var initCharArray = function(el, perso) {
+  // Ajoute le nom du perso aux données de l'élément afin de le retrouver plus tard
+  el.data("char-name", perso.name);
   $('.name', el).text(perso.name);
   $('.classe', el).text(perso.class);
   $('.race', el).text(perso.race);
@@ -139,4 +151,23 @@ $('.startFight').on('click', function(e) {
   // On prépare le combat.
   var fight1 = new Fight(joueur1.characteres[0], joueur1.characteres[1], arena);
   fight1.prepareToFight();
+})
+
+// Listener pour chanque changement d'item.
+$('.charStats select').on('change', function(e) {
+  e.preventDefault();
+  // Récup du tableau
+  var statsTab = $(this).closest(".table");
+  // Récup du perso qui est stocké dans les données de l'élément
+  var charName = statsTab.data("char-name");
+  // Récup de l'Objet Personnage
+  var char = joueur1.getCharactere(charName);
+  // Récup le nom de l'item.
+  var itemName = $(this).val();
+  // Récup de l'objet Items
+  var item = getItemByName(itemName);
+  // Le personnage équipe l'item sélectionné
+  char.equip(item);
+  // On rénitialise le tableau de stats du perso
+  initCharArray(statsTab, char);
 })
