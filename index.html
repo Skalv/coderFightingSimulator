@@ -6,30 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Codeur fighting simulator</title>
 
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <link rel="stylesheet" href="app/css/style.css">
-
 </head>
 <body>
-  <ol>
-    <li>Logs de combat dans la page html</li>
-    <li>Création d'équipement.</li>
-    <li>Ajout d'un équipement à un personnage
-      <ol>
-        <li>Afficher un tableau pour chaque personnage</li>
-        <li>Dans ce tableau liste chaque emplacement d'item</li>
-        <li>placer un select qui permet de choisir parmis les équipements disponibles</li>
-      </ol>
-    </li>
-  </ol>
-
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-<br>
-
-
   <!-- Titre de la page -->
   <h1 class="pageTitle">Création d'un Joueur</h1>
   <!-- Notification -->
@@ -47,6 +27,151 @@
 
     <input type="submit" value="Créer">
   </form>
+  <!-- tableau de personnage -->
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-6">
+        <table class="table table-bordered perso1 hide">
+          <thead>
+            <tr>
+              <th class="name"></th>
+              <th class="classe"></th>
+              <th class="race"></th>
+              <th class="lvl"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td colspan="2">Attack : <span class="attack"></span></td>
+              <td colspan="2">
+                Casque :
+                <select name="casque"></select>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2">Defense : <span class="defense"></span></td>
+              <td colspan="2">
+                Torse :
+                <select name="torse"></select>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2">Speed : <span class="speed"></span></td>
+              <td colspan="2">
+                Gants :
+                <select name="gants"></select>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2">Vie : <span class="life"></span></td>
+              <td colspan="2">
+                Bottes :
+                <select name="bottes"></select>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2">XP : <span class="xp"></span></td>
+              <td colspan="2">
+                Pantalon :
+                <select name="pantalon"></select>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2"></td>
+              <td colspan="2">
+                Main gauche :
+                <select name="mainGauche"></select>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2"></td>
+              <td colspan="2">
+                Main droite :
+                <select name="mainDroite"></select>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2"></td>
+              <td colspan="2">
+                Pouvoir :
+                <select name="power"></select>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-xs-12 col-sm-6">
+        <table class="table table-bordered perso2 hide">
+          <thead>
+            <tr>
+              <th class="name"></th>
+              <th class="classe"></th>
+              <th class="race"></th>
+              <th class="lvl"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td colspan="2">Attack : <span class="attack"></span></td>
+              <td colspan="2">
+                Casque :
+                <select name="casque"></select>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2">Defense : <span class="defense"></span></td>
+              <td colspan="2">
+                Torse :
+                <select name="torse"></select>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2">Speed : <span class="speed"></span></td>
+              <td colspan="2">
+                Gants :
+                <select name="gants"></select>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2">Vie : <span class="life"></span></td>
+              <td colspan="2">
+                Bottes :
+                <select name="bottes"></select>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2">XP : <span class="xp"></span></td>
+              <td colspan="2">
+                Pantalon :
+                <select name="pantalon"></select>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2"></td>
+              <td colspan="2">
+                Main gauche :
+                <select name="mainGauche"></select>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2"></td>
+              <td colspan="2">
+                Main droite :
+                <select name="mainDroite"></select>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2"></td>
+              <td colspan="2">
+                Pouvoir :
+                <select name="power"></select>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
   <!-- Formulaire de creation de personnage -->
   <form action="#" class="formCharactere hide">
     <label for="name">Nom du personnage</label>
@@ -78,6 +203,8 @@
   </form>
   <!-- Bouton de combat -->
   <button class="startFight hide">Lancer le combat</button>
+  <!-- Logs de combats -->
+  <ul class="fightLog"></ul>
   <script src="./app/lib/jquery.min.js"></script>
   <script src="public/game.js"></script>
 </body>

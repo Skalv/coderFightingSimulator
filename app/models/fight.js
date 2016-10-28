@@ -28,7 +28,7 @@ Fight.prototype.round = function(attacker, defenser) {
 }
 
 Fight.prototype.roundEnd = function(winner, looser) {
-  console.log("And the winner is " + winner.name + " in " + this.rounds + " rounds.");
+  $(".fightLog").append("<li><b>And the winner is " + winner.name + " in " + this.rounds + " rounds</b></li>");
 }
 
 Fight.prototype.prepareToFight = function() {
@@ -58,9 +58,6 @@ Fight.prototype.prepareToFight = function() {
       var defenser = this.char1;
     }
   }
-
-  console.log(attacker.name + " attaque en premier");
-  console.log(defenser.name + " defend en premier");
 
   // On lance le combat
   this.round(attacker, defenser);

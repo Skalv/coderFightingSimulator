@@ -9,7 +9,7 @@ var joueur1;
 // Générateur d'items.
 var items = [];
 var nameP1 = ["de force", 'de robustesse', 'de rapidité'];
-var itemType = ["bottes", "pantalon", "torse", "gants", "casque", "main gauche", "main droite", "power"];
+var itemType = ["bottes", "pantalon", "torse", "gants", "casque", "mainGauche", "mainDroite", "power"];
 var statsSet = [
   [[20, 10, 30], [10, 20, 30], [10, 10, 60]], // bottes
   [[30, 10, 10], [10, 30, 10], [20, 20, 20]], // pantalon
@@ -27,6 +27,50 @@ for (var i = 0; i < itemType.length; i++) {
     var item = new Item(itemType[i], itemName, statsSet[i][j][0], statsSet[i][j][1], itemName, statsSet[i][j][2]);
     items.push(item);
   }
+}
+
+// Retourne tous les objets en fonction du type passé en argument
+var getItemByType = function(type) {
+  var returnedItems = [];
+  for (var i = 0; i < items.length; i++) {
+    if (items[i].type === type) {
+      returnedItems.push(items[i]);
+    }
+  }
+  return returnedItems;
+}
+
+var populateSelectItem = function(type, el) {
+  // recherche les item par types
+  var liste = getItemByType(type);
+  // inject dans le selecteur chaque item
+  for (var i = 0; i < liste.length; i++) {
+    $("select[name="+type+"]", el).append("<option>" + liste[i].name + "</option>");
+  }
+}
+
+var initCharArray = function(el, perso) {
+  $('.name', el).text(perso.name);
+  $('.classe', el).text(perso.class);
+  $('.race', el).text(perso.race);
+  $('.lvl', el).text(perso.level);
+
+  $('.attack', el).text(perso.attack);
+  $('.defense', el).text(perso.defense);
+  $('.speed', el).text(perso.speed);
+  $('.life', el).text(perso.life);
+  $('.xp', el).text(perso.experience);
+
+  populateSelectItem('casque', el);
+  populateSelectItem('torse', el);
+  populateSelectItem('gants', el);
+  populateSelectItem('pantalon', el);
+  populateSelectItem('mainGauche', el);
+  populateSelectItem('mainDroite', el);
+  populateSelectItem('power', el);
+  populateSelectItem('bottes', el);
+
+  el.removeClass('hide');
 }
 
 $('.formPlayer').on('submit', function(e) {
@@ -73,6 +117,14 @@ $('.formCharactere').on('submit', function(e) {
     $('.notification').text('Il faut second personnage pour combattre !');
     // Vide le formulaire
     $('.formCharactere input[type=text]').val('');
+  }
+  switch (joueur1.characteres.length) {
+    case 1:
+      initCharArray($('.perso1'), joueur1.characteres[0]);
+      break;
+    case 2:
+      initCharArray($('.perso2'), joueur1.characteres[1]);
+      break;
   }
 })
 
